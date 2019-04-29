@@ -1,8 +1,9 @@
 @import "../theme.scss";
 
-.tab {
+:host {
   border-left: $tab-border;
   border-right: $tab-border;
   border-bottom: $tab-border;
+  display: block;
   padding: 15px 25px;
 }
