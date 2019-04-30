@@ -42,16 +42,30 @@ describe('AppComponent', () => {
     expect(tabs.length).toBe(1);
   })
 
-  it('should only find one tab', () => {
+  it('the Contacts tab should be selected', async(() => {
     const selectedButton = tabPanel.query(By.css('.tab-panel-buttons li.selected')).nativeElement;
 
     expect(selectedButton).toBeTruthy();
-    expect(selectedButton.textContent).toContain('Contact');
-  })
+    expect(selectedButton.textContent).toContain('Login');
+  }));
 
-  it('should only find one tab', () => {
-    const contactEmail = tabPanel.query(By.css('.contact-email'));
+  it('should display the Contacts tab', async(() => {
+    const contactEmail = tabPanel.query(By.css('.login-email'));
 
     expect(contactEmail).toBeTruthy();
-  })
+  }));
+
+  it('should switch to the Login Tab', async(() => {
+    const tabButtons = tabPanel.queryAll(By.css('.tab-panel-buttons li'));
+    tabButtons[2].nativeElement.click();
+
+    fixture.detectChanges()
+
+    const contactEmail = tabPanel.query(By.css('.contact-email'));
+    expect(contactEmail).toBeTruthy();
+
+    const selectedButton = tabPanel.query(By.css('.tab-panel-buttons li.selected')).nativeElement;
+    expect(selectedButton).toBeTruthy();
+    expect(selectedButton.textContent).toContain('Contact');
+  }));
 });
